@@ -1,0 +1,47 @@
+INSERT INTO especie (codigo, nombre, orden) VALUES
+    ('perro',  'Perro',  1),
+    ('gato',   'Gato',   2),
+    ('conejo', 'Conejo', 3),
+    ('huron',  'Hurón',  4);
+
+INSERT INTO raza (id, codigo_especie, nombre) VALUES
+    (1,  'perro', 'Mestizo'),
+    (2,  'perro', 'Labrador Retriever'),
+    (3,  'perro', 'Golden Retriever'),
+    (4,  'perro', 'Pastor Alemán'),
+    (5,  'perro', 'Bulldog Francés'),
+    (6,  'perro', 'Poodle'),
+    (7,  'perro', 'Shih Tzu'),
+    (8,  'perro', 'Beagle'),
+    (9,  'perro', 'Schnauzer'),
+    (10, 'perro', 'Pinscher'),
+    (11, 'perro', 'Yorkshire Terrier'),
+    (12, 'perro', 'Criollo colombiano'),
+    (13, 'perro', 'Husky Siberiano'),
+    (14, 'perro', 'Rottweiler'),
+    (15, 'perro', 'Pitbull Terrier'),
+    (101, 'gato', 'Mestizo'),
+    (102, 'gato', 'Persa'),
+    (103, 'gato', 'Siamés'),
+    (104, 'gato', 'Maine Coon'),
+    (105, 'gato', 'Bengalí'),
+    (106, 'gato', 'British Shorthair'),
+    (107, 'gato', 'Angora'),
+    (201, 'conejo', 'Mestizo'),
+    (202, 'conejo', 'Belier'),
+    (203, 'conejo', 'Cabeza de León'),
+    (204, 'conejo', 'Rex'),
+    (301, 'huron', 'Mestizo');
+
+INSERT INTO vacuna (id, codigo_especie, nombre, previene, intervalo_refuerzo_meses) VALUES
+    (1,  'perro',  'Antirrábica',              'Rabia', 12),
+    (2,  'perro',  'Polivalente (DHPPi)',      'Moquillo, hepatitis, parvovirus y parainfluenza', 12),
+    (3,  'perro',  'Leptospirosis',            'Leptospirosis', 12),
+    (4,  'perro',  'Tos de las perreras',      'Traqueobronquitis infecciosa (Bordetella)', 12),
+    (101, 'gato',  'Antirrábica',              'Rabia', 12),
+    (102, 'gato',  'Triple felina (FVRCP)',    'Rinotraqueítis, calicivirus y panleucopenia', 12),
+    (103, 'gato',  'Leucemia felina (FeLV)',   'Leucemia felina', 12),
+    (201, 'conejo', 'Mixomatosis',             'Mixomatosis', 6),
+    (202, 'conejo', 'Enfermedad hemorrágica',  'Enfermedad hemorrágica vírica (RHD)', 12),
+    (301, 'huron',  'Moquillo',                'Moquillo canino en hurones', 12),
+    (302, 'huron',  'Antirrábica',             'Rabia', 12);
