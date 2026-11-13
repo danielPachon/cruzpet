@@ -1,0 +1,42 @@
+# Secretos: nunca al repo
+.env
+.env.*
+!.env.example
+*.pem
+*.ppk
+*.key
+*.p12
+*.jks
+
+# Java / Gradle
+.gradle/
+build/
+out/
+*.class
+!gradle/wrapper/gradle-wrapper.jar
+
+# Node / frontends
+node_modules/
+dist/
+.next/
+.turbo/
+coverage/
+*.tsbuildinfo
+
+# Python
+__pycache__/
+.venv/
+*.pyc
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+
+# IDE y sistema
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.iml
+.DS_Store
+Thumbs.db
