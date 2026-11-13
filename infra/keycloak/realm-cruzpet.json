@@ -1,0 +1,160 @@
+{
+  "realm": "cruzpet",
+  "displayName": "CruzPet",
+  "enabled": true,
+  "registrationAllowed": true,
+  "registrationEmailAsUsername": true,
+  "loginWithEmailAllowed": true,
+  "resetPasswordAllowed": true,
+  "verifyEmail": false,
+  "internationalizationEnabled": true,
+  "supportedLocales": [
+    "es",
+    "en"
+  ],
+  "defaultLocale": "es",
+  "bruteForceProtected": true,
+  "permanentLockout": false,
+  "failureFactor": 5,
+  "waitIncrementSeconds": 900,
+  "maxFailureWaitSeconds": 900,
+  "maxDeltaTimeSeconds": 43200,
+  "accessTokenLifespan": 300,
+  "ssoSessionIdleTimeout": 1800,
+  "passwordPolicy": "length(8) and notUsername",
+  "roles": {
+    "realm": [
+      {
+        "name": "offline_access",
+        "description": "Acceso sin conexión"
+      },
+      {
+        "name": "TITULAR",
+        "description": "Dueño que afilia mascotas"
+      },
+      {
+        "name": "IPSA_ADMIN",
+        "description": "Administrador de una IPSA"
+      },
+      {
+        "name": "VETERINARIO",
+        "description": "Veterinario de la red"
+      },
+      {
+        "name": "PRESTADOR",
+        "description": "Prestador de cuidado"
+      },
+      {
+        "name": "VENDEDOR",
+        "description": "Vendedor de la tienda"
+      },
+      {
+        "name": "AUDITOR",
+        "description": "Auditor médico de la EPSA"
+      },
+      {
+        "name": "ASESOR",
+        "description": "Asesor comercial de la EPSA"
+      },
+      {
+        "name": "ADMIN_EPSA",
+        "description": "Administrador de la EPSA"
+      },
+      {
+        "name": "default-roles-cruzpet",
+        "description": "Roles que recibe todo usuario nuevo",
+        "composite": true,
+        "composites": {
+          "realm": [
+            "offline_access",
+            "TITULAR"
+          ]
+        }
+      }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "cruzpet-shell",
+      "name": "Portal web CruzPet",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": false,
+      "redirectUris": [
+        "http://localhost:3000/*"
+      ],
+      "webOrigins": [
+        "http://localhost:3000"
+      ],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "post.logout.redirect.uris": "http://localhost:3000/*"
+      }
+    },
+    {
+      "clientId": "cruzpet-dev-cli",
+      "name": "Cliente para pruebas locales con curl (solo desarrollo)",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": true
+    }
+  ],
+  "users": [
+    {
+      "username": "titular.demo@cruzpet.co",
+      "email": "titular.demo@cruzpet.co",
+      "firstName": "Laura",
+      "lastName": "Demo",
+      "enabled": true,
+      "emailVerified": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "cruzpet-demo",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "TITULAR"
+      ]
+    },
+    {
+      "username": "veterinario.demo@cruzpet.co",
+      "email": "veterinario.demo@cruzpet.co",
+      "firstName": "Andrés",
+      "lastName": "Demo",
+      "enabled": true,
+      "emailVerified": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "cruzpet-demo",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "VETERINARIO"
+      ]
+    },
+    {
+      "username": "admin.demo@cruzpet.co",
+      "email": "admin.demo@cruzpet.co",
+      "firstName": "Admin",
+      "lastName": "EPSA",
+      "enabled": true,
+      "emailVerified": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "cruzpet-demo",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "ADMIN_EPSA"
+      ]
+    }
+  ]
+}
