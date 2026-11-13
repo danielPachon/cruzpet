@@ -46,62 +46,58 @@ flowchart LR
 
 ```mermaid
 flowchart TB
-    subgraph Clientes
+    subgraph CLI[Clientes]
+        direction LR
         WEB[Sitio público<br/>Next.js]
-        SHELL[Shell de microfrontends<br/>React + Rsbuild + Module Federation]
-        APP[App móvil<br/>Expo React Native]
+        SHELL[Shell<br/>React + Module Federation]
+        APP[App móvil<br/>Expo]
     end
 
     subgraph MFE[Microfrontends remotos]
-        MFA[mf-titular]
-        MFI[mf-ipsa]
-        MFE2[mf-epsa]
-        MFM[mf-marketplace]
-        MFT[mf-tienda]
-        MFR[mf-rastreo]
+        direction LR
+        MFA[mf-titular] ~~~ MFI[mf-ipsa] ~~~ MFE2[mf-epsa]
+        MFM[mf-marketplace] ~~~ MFT[mf-tienda] ~~~ MFR[mf-rastreo]
     end
 
-    SHELL --> MFA & MFI & MFE2 & MFM & MFT & MFR
+    SHELL -- carga en tiempo de ejecución --> MFE
 
     KC[Keycloak<br/>OIDC · roles]
     GW[API Gateway<br/>Spring Cloud Gateway]
 
-    WEB & SHELL & APP --> GW
-    WEB & SHELL & APP -. login .-> KC
+    CLI -. login .-> KC
+    CLI -- REST · WebSocket --> GW
 
-    subgraph Servicios
-        AF[afiliacion]
-        PL[planes]
-        RED[red-prestadores]
-        AG[agenda]
-        HC[historia-clinica]
-        AU[autorizaciones]
-        FA[facturacion]
-        MK[marketplace]
-        TI[tienda]
-        ID[identidad-animal]
-        RA[rastreo]
-        NO[notificaciones]
-        IA[ia · Python]
+    subgraph SVC[Microservicios]
+        direction LR
+        subgraph SAL[Salud]
+            AF[afiliacion] ~~~ PL[planes] ~~~ RED[red-prestadores]
+            AG[agenda] ~~~ HC[historia-clinica] ~~~ AU[autorizaciones]
+            FA[facturacion]
+        end
+        subgraph ECO[Ecosistema]
+            MK[marketplace] ~~~ TI[tienda]
+            ID[identidad-animal] ~~~ RA[rastreo]
+        end
+        subgraph TRV[Transversales]
+            NO[notificaciones] ~~~ IA[ia · Python]
+        end
     end
 
-    GW --> AF & PL & RED & AG & HC & AU & FA & MK & TI & ID & RA & IA
+    GW --> SVC
 
     K{{Kafka<br/>eventos de dominio}}
-    AF & PL & RED & AG & HC & AU & FA & MK & TI & ID & RA --> K
-    K --> NO & IA
+    SAL & ECO -- publican --> K
+    K -- consumen --> TRV
 
-    MQ[Broker MQTT<br/>EMQX] --> RA
-    RA -- WebSocket --> GW
+    MQ[Broker MQTT · EMQX] -- telemetría --> RA
 
-    subgraph Datos
-        PG[(PostgreSQL<br/>una base por servicio)]
-        TS[(TimescaleDB + PostGIS<br/>telemetría)]
-        RD[(Redis)]
-        OS[(OpenSearch<br/>búsqueda catálogo y prestadores)]
-        S3[(Almacenamiento de objetos<br/>MinIO / S3)]
-        DW[(Analítica<br/>ClickHouse)]
+    subgraph DAT[Datos · una base por servicio]
+        direction LR
+        PG[(PostgreSQL)] ~~~ TS[(TimescaleDB<br/>+ PostGIS)] ~~~ RD[(Redis)]
+        OS[(OpenSearch)] ~~~ S3[(MinIO / S3)] ~~~ DW[(ClickHouse)]
     end
+
+    SVC --> DAT
 ```
 
 ## 4. Mapa de servicios (bounded contexts)
