@@ -22,7 +22,7 @@ services:
       retries: 20
 
   keycloak:
-    image: quay.io/keycloak/keycloak:26.4
+    image: quay.io/keycloak/keycloak:26.8
     profiles: [core]
     command: ["start-dev", "--import-realm", "--health-enabled=true"]
     environment:
