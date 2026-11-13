@@ -45,7 +45,7 @@ jobs:
 
       - name: Publicar reportes de pruebas
         if: failure()
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: reportes-de-pruebas
           path: "**/build/reports/tests/"
