@@ -67,10 +67,11 @@ El proyecto sigue el ciclo de vida completo del software y cada fase deja su doc
 | 05 | Contratos de API (OpenAPI) y eventos | ⏳ |
 | 06 | Plan de pruebas | ⏳ |
 | 07 | Despliegue y operación | ⏳ |
+| — | [Desarrollo local](docs/desarrollo-local.md) | ✅ |
 
 ## Roadmap
 
-- [ ] **R0 · Fundaciones:** monorepo, CI/CD, entorno local, Keycloak, gateway, shell y design system
+- [ ] **R0 · Fundaciones** (en curso: monorepo, entorno local, Keycloak, servicio de catálogos y CI listos): monorepo, CI/CD, entorno local, Keycloak, gateway, shell y design system
 - [ ] **R1 · MVP Salud:** afiliación, planes, red IPSA, agenda, historia clínica, carnet y cédula animal
 - [ ] **R2 · Operación EPSA:** autorizaciones, copagos, facturación, notificaciones y urgencias
 - [ ] **R3 · Marketplace de cuidado**
